@@ -1,6 +1,6 @@
 // Problem: LeetCode #633 - Sum of Square Numbers
 // Difficulty: Medium
-// Topic: Math, Brute Force
+// Topic: Math, Two Pointer, Binary Search, Brute Force
 // Link: https://leetcode.com/problems/sum-of-square-numbers/
 
 /**
@@ -13,7 +13,4 @@ var judgeSquareSum = function (c) {
     let b = Math.sqrt(bSquared);
     if (Number.isInteger(b)) {
       return true;
-    }
-  }
-  return false;
-};
+ 
