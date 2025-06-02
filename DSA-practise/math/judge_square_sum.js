@@ -13,4 +13,7 @@ var judgeSquareSum = function (c) {
     let b = Math.sqrt(bSquared);
     if (Number.isInteger(b)) {
       return true;
- 
+    }
+  }
+  return false;
+};
