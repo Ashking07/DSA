@@ -1,0 +1,19 @@
+ In every function, we are saying that return what this same function will perform in next iteration, 
+ and this happens recursively for each operation untill the base case is hit in that case the final built 
+ up result is just bubbled up to the original function 
+
+
+ChatGPT said:
+Exactly, Ashwin! 💡🔥
+That’s a perfect understanding of recursion.
+
+To restate what you beautifully captured:
+
+🔁 "Each recursive call says: 'I don't know the final answer yet, but I trust the next version of myself 
+to get it — and whatever it returns, I'll just return that too.'"
+
+And when the base case is finally hit, it acts like the answer key — and all the calls waiting in the stack go:
+
+"Ahh! Here's the result I've been waiting for. Let me pass it back up."
+
+(Refer to the sum "add_strings" for more clarity)
