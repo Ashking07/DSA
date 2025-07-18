@@ -1,0 +1,64 @@
+1. nums.sort((a, b) => a - b);
+
+2. nums.sort((a, b) => a[0] - b[0]);
+
+3. function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor(left + (right - left) / 2); // safer than (left + right) / 2
+
+    if (arr[mid] === target) {
+      return mid; // found
+    } else if (arr[mid] < target) {
+      left = mid + 1; // search right half
+    } else {
+      right = mid - 1; // search left half
+    }
+  }
+
+  return -1; // not found
+}
+
+
+4. Math.abs(number) //Gives absoulte value of any number; distance
+
+5. map[sum] = (map[sum] || 0) + 1; //Freq counter in map{}
+
+6. Math.min(num1, num2); //Greedy Method 
+
+7. Math.max(num1, num2); //Greedy Method 
+
+8. result.reduce((acc, val) => acc + val, 0); //Accumulator
+
+9. for (const key of Object.keys(map)) //Iterate through all the keys from a map 
+
+10. words[i][j] //Technique to access the nested array 
+
+11. Make use of flags (Boolean values) for clever condition checks 
+
+12. [arr[i], arr[j]] = [arr[j], arr[i]]; //Technique to exchange numbers cleverly 
+
+13. Array In-place transformation:
+    function transformArray(arr) {
+    let i = 0;            // Pointer for reading
+    let j = 0;            // Pointer for writing (if needed)
+
+    while (i < arr.length) {
+      // Example transformation logic
+      if (/* some condition on arr[i] */ e.g arr[i] !== 0) { 
+        arr[j] = /* some value or transformation of arr[i] */; e.g arr[i]
+        j++;
+      }
+
+      i++;
+    }
+
+    // Optional: truncate if needed
+    arr.length = j;
+
+    return arr;
+  }
+
+14. Convert from string of 0's and 1's (binary) to int -> let decimalNumber = parseInt(result, 2);
