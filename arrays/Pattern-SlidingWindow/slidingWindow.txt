@@ -1,0 +1,125 @@
+1. General Sliding Window Template
+
+let left = 0;
+for (let right = 0; right < s.length; right++) {
+    // Expand the window with s[right]
+
+    // While the window is invalid or needs to shrink
+    while (/* condition */) {
+        // Shrink the window from the left
+        left++;
+    }
+
+    // Now the window is valid (if needed)
+    // Perform your logic (count, update result, etc.)
+}
+
+
+ 5 popular sub-patterns based on the nature of the problem.
+
+ 1. Fixed Size Sliding Window
+
+ let maxSum = 0, windowSum = 0;
+for (let i = 0; i < s.length; i++) {
+    windowSum += s[i];
+
+    if (i >= k - 1) {
+        maxSum = Math.max(maxSum, windowSum);
+        windowSum -= s[i - k + 1];
+    }
+}
+
+2. Variable Size – Substring/Subarray with at most K distinct/unique elements
+
+let left = 0, result = 0;
+let freqMap = {};
+
+for (let right = 0; right < s.length; right++) {
+    freqMap[s[right]] = (freqMap[s[right]] || 0) + 1;
+
+    while (Object.keys(freqMap).length > k) {
+        freqMap[s[left]]--;
+        if (freqMap[s[left]] === 0) delete freqMap[s[left]];
+        left++;
+    }
+
+    result += right - left + 1;
+}
+
+3. Substring/Subarray with exactly K distinct elements
+
+function atMostK(nums, k) {
+    let left = 0, count = 0, freq = {};
+
+    for (let right = 0; right < nums.length; right++) {
+        freq[nums[right]] = (freq[nums[right]] || 0) + 1;
+
+        if (freq[nums[right]] === 1) k--;
+
+        while (k < 0) {
+            freq[nums[left]]--;
+            if (freq[nums[left]] === 0) k++;
+            left++;
+        }
+
+        count += right - left + 1;
+    }
+
+    return count;
+}
+
+Then:
+
+return atMostK(nums, k) - atMostK(nums, k - 1);
+
+4. Minimum/Maximum Window Substring (like Leetcode 76)
+
+let need = {...};
+let have = {};
+let required = Object.keys(need).length;
+let formed = 0;
+let left = 0, right = 0;
+let minLen = Infinity, start = 0;
+
+while (right < s.length) {
+    // Add right character
+    let char = s[right];
+    have[char] = (have[char] || 0) + 1;
+
+    if (need[char] && have[char] === need[char]) {
+        formed++;
+    }
+
+    while (formed === required) {
+        // Update minimum
+        if ((right - left + 1) < minLen) {
+            minLen = right - left + 1;
+            start = left;
+        }
+
+        // Shrink window from left
+        let lChar = s[left];
+        have[lChar]--;
+        if (need[lChar] && have[lChar] < need[lChar]) {
+            formed--;
+        }
+        left++;
+    }
+
+    right++;
+}
+
+5. Longest Substring with All Unique Characters (Leetcode 3)
+
+let left = 0, result = 0;
+let charSet = new Set();
+
+for (let right = 0; right < s.length; right++) {
+    while (charSet.has(s[right])) {
+        charSet.delete(s[left]);
+        left++;
+    }
+    charSet.add(s[right]);
+    result = Math.max(result, right - left + 1);
+}
+
